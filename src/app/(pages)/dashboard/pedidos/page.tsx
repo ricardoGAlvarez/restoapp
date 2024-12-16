@@ -39,7 +39,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Calendar } from "@/components/ui/calendar";
+// import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
@@ -53,7 +53,7 @@ interface Product {
   nombre: string;
   descripcion: string;
   precio: number;
-  nombre_categoria:string;
+  nombre_categoria: string;
   image: string;
 }
 
@@ -67,8 +67,8 @@ export default function Pedidos() {
 
   const filteredOrders = selectedDate
     ? orders.filter(
-        (order) => order.date.toDateString() === selectedDate.toDateString()
-      )
+      (order) => order.date.toDateString() === selectedDate.toDateString()
+    )
     : orders;
 
   const indexOfLastOrder = currentPage * ordersPerPage;
@@ -140,12 +140,8 @@ export default function Pedidos() {
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="end">
-              <Calendar
-                mode="single"
-                selected={selectedDate}
-                onSelect={setSelectedDate}
-                initialFocus
-              />
+              <Input type="date" onChange={(e) => setSelectedDate(new Date(e.target.value))} />
+
             </PopoverContent>
           </Popover>
           <Button onClick={handleCreateOrder}>
@@ -286,7 +282,7 @@ export default function Pedidos() {
                 <Label htmlFor="image">Estado</Label>
                 <Select
                   name="image"
-                  defaultValue={editingOrder?.image }
+                  defaultValue={editingOrder?.image}
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Selecciona un estado" />
